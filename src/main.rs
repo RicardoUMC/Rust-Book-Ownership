@@ -58,14 +58,14 @@ fn main() {
 
     //======> Ownership and Functions
 
-    // Passing a value to a funtion will move or copy the variable, depending on whether
+    // Passing a value to a function will move or copy the variable, depending on whether
     // the data type implements the Copy trait.
     let s = String::from("hello");
-    takes_ownership(s); //<------ Here, s's value is moved into the function...
+    takes_ownership(s); // <------ Here, s's value is moved into the function...
 
     let x = 5;
-    makes_copy(x); //<----------- Here, x's value is copied.
-    println!("{}", x); //<------- So it is safe to use x afterward.
+    makes_copy(x); // <----------- Here, x's value is copied.
+    println!("{}", x); // <------- So it is safe to use x afterward.
 
     //======> Return Values and Scope 
 
@@ -73,8 +73,8 @@ fn main() {
     let s1 = gives_ownership(); // <----------- gives_ownership moves its return.
     let s2 = String::from("hello");
     let s3 = takes_and_gives_back(s2); // <---- s2 is moved into
-                                       // takes_and_gives_back, which also
-                                       // moves its return value into s3.
+                                       //       takes_and_gives_back, which also
+                                       //       moves its return value into s3.
 
     // Before seeing what are the `references` we can use tuples for returning a
     // necessary value which we passed in to a function.
