@@ -1,15 +1,19 @@
 #![allow(unused)]
 
 fn main() {
-    // Using :: operatior thar allows us to namespace `from` function
-    // under the String type
+
+    /******************************/
+    /* Ownership and how it works */
+    /******************************/
+
+    // Using :: operator thar allows us to namespace `from` function under the String
+    // type.
     let mut s = String::from("hello");
     s.push_str(", world!");
 
     println!("{s}");
 
-
-    //======> Variables an Data Interacting with Move
+    //======> Variables and Data Interacting with Move
     
     // Using fixed size data types would make a copy of the value
     let x = 5;
@@ -29,6 +33,27 @@ fn main() {
     // (potential vulnerability), addressing the "double free" error when trying 
     // free the memory twice.
     //-----> Example:
-    println!("{s1} world!");
+    //------>   println!("{s1} world!"); 
+
+    //======> Scope and Assignment
+
+    // When assigning a completely new value to an existing variable, Rust will `drop`
+    // the previous variable and free their allocated memory.
+    let mut s = String::from("hello");
+    s = String::from("ahoy");
+
+    println!("{s}, world!");
+
+    //======> Variables and Data Interacting with Clone
+
+    // When we actually want to "deeply copy" the heap data of a `String` and not the
+    // stack, we can use the method `clone`.
+    let s1 = String::from("hello");
+    let s2 = s1.clone();
+
+    println!("s1 = {s1}, s2 = {s2}");
+    // The next part is to see the difference when operating with integers (fixed size
+    // data).
+    println!("x = {x}, y = {y}");
 
 }
