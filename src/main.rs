@@ -13,7 +13,7 @@ fn main() {
 
     println!("{s}");
 
-    //======> Variables and Data Interacting with Move
+    // =====> Variables and Data Interacting with Move
     
     // Using fixed size data types would make a copy of the value
     let x = 5;
@@ -32,10 +32,10 @@ fn main() {
     // The previous will make `s1` no longer valid for Rust. Avoiding memory corryption 
     // (potential vulnerability), addressing the "double free" error when trying 
     // free the memory twice.
-    //-----> Example:
-    //------>   println!("{s1} world!"); 
+    // ----> Example:
+    // ----->   println!("{s1} world!"); 
 
-    //======> Scope and Assignment
+    // =====> Scope and Assignment
 
     // When assigning a completely new value to an existing variable, Rust will `drop`
     // the previous variable and free their allocated memory.
@@ -44,7 +44,7 @@ fn main() {
 
     println!("{s}, world!");
 
-    //======> Variables and Data Interacting with Clone
+    // =====> Variables and Data Interacting with Clone
 
     // When we actually want to "deeply copy" the heap data of a `String` and not the
     // stack, we can use the method `clone`.
@@ -56,7 +56,7 @@ fn main() {
     // data).
     println!("x = {x}, y = {y}");
 
-    //======> Ownership and Functions
+    // =====> Ownership and Functions
 
     // Passing a value to a function will move or copy the variable, depending on whether
     // the data type implements the Copy trait.
@@ -67,7 +67,7 @@ fn main() {
     makes_copy(x); // <----------- Here, x's value is copied.
     println!("{}", x); // <------- So it is safe to use x afterward.
 
-    //======> Return Values and Scope 
+    // =====> Return Values and Scope 
 
     // We can also transfer ownership by returning values.
     let s1 = gives_ownership(); // <----------- gives_ownership moves its return.
