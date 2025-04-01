@@ -56,7 +56,7 @@ fn main() {
     // data).
     println!("x = {x}, y = {y}");
 
-    // =====> Ownership and Functions
+    // =====> Ownership and Functions (check down below)
 
     // Passing a value to a function will move or copy the variable, depending on whether
     // the data type implements the Copy trait.
@@ -67,7 +67,7 @@ fn main() {
     makes_copy(x); // <----------- Here, x's value is copied.
     println!("{}", x); // <------- So it is safe to use x afterward.
 
-    // =====> Return Values and Scope 
+    // =====> Return Values and Scope (check down below)
 
     // We can also transfer ownership by returning values.
     let s1 = gives_ownership(); // <----------- gives_ownership moves its return.
@@ -83,6 +83,22 @@ fn main() {
     let (s2, len) = calculate_length(s1);
 
     println!("The length of '{s2}' is {len}.");
+
+    // =====> References and Borrowing (check down below)
+
+    // Instead of taking ownership of a value, we could give a "reference", which is
+    // similar to a pointer, but with the difference that it will point to a valid
+    // value for the life of that reference. 
+    let s1 = String::from("hello");
+
+    let len = calculate_length_2(&s1);
+    
+    println!("The length of '{s1}' is {len}.");
+
+    // Error example when trying to modify something borrowed (see down below):
+    let s = String::from("hello");
+    change(&s);
+
 }
 
 /***************************/
@@ -116,4 +132,22 @@ fn calculate_length(s: String) -> (String, usize) {
     let length = s.len();
 
     (s, length)
+}
+
+/***************************/
+/*        Borrowing        */
+/***************************/
+
+// Here we are giving the function the reference for use it without taking
+// ownership.
+fn calculate_length_2(s: &String) -> usize { // s is a reference to a String
+    // When using references as parameters in functions, there is no need in
+    // returning the values in order to give back ownership.
+    s.len()
+} // Here, s goes out of scope. But because s does not have ownership of what
+  // it referss to, the value is not dropped.
+
+// Error example
+fn change(some_string: &String) {
+    some_string.push_str(", world");
 }
