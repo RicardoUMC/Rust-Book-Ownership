@@ -83,7 +83,9 @@ fn main() {
 
     println!("The length of '{s2}' is {len}.");
 
-    // =====> References and Borrowing (check down below)
+    /******************************/
+    /*  References and Borrowing  */
+    /******************************/
 
     // Instead of taking ownership of a value, we could give a "reference", which is
     // similar to a pointer, but with the difference that it will point to a valid
@@ -157,6 +159,11 @@ fn main() {
     // not go out of scope before the reference to the data does. (Just like freeing 
     // some memory while preserving a pointer to that memory).
     let reference_to_nothing = dangle();
+
+    /******************************/
+    /*         Slice Type         */
+    /******************************/
+
 }
 
 /***************************/
@@ -183,6 +190,8 @@ fn gives_ownership() -> String {
 fn takes_and_gives_back(a_string: String) -> String {
     a_string
 }
+
+//-------------------------------------------------------------------------------------//
 
 // This is an option: To pass back a value we want to use it again. Sadly, not all
 // times we might want to transfer ownerships.
@@ -236,3 +245,5 @@ fn dangle() -> String { // dangle return a reference to a String
     s // we return a reference to the String, s
 } // Here, s goes out of scope, and is dropped. Its memory goes away.
   // Danger!
+
+//-------------------------------------------------------------------------------------//
