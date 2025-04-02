@@ -156,14 +156,13 @@ fn main() {
     // =====> Dangling References
 
     // Unlike languages with pointers, Rust compiler guarantees the referenced data will
-    // not go out of scope before the reference to the data does. (Just like freeing 
+    // not go out of scope before the reference to the data does. (Just like freeing
     // some memory while preserving a pointer to that memory).
     let reference_to_nothing = dangle();
 
     /******************************/
     /*         Slice Type         */
     /******************************/
-
 }
 
 /***************************/
@@ -240,7 +239,8 @@ fn dangle() -> &String { // dangle return a reference to a String
 */
 
 // Solution
-fn dangle() -> String { // dangle return a reference to a String
+fn dangle() -> String {
+    // dangle return a reference to a String
     let s = String::from("hello"); // s is a new String
     s // we return a reference to the String, s
 } // Here, s goes out of scope, and is dropped. Its memory goes away.
